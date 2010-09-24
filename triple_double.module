@@ -28,8 +28,46 @@ function triple_double_help($path, $arg) {
 
 /**
  * Implementation of hook_perm()
- *
  */
 function triple_double_perm() {
   return array('access triple double content', 'administer triple double');
 }
+
+/**
+ * Implementation of hook_menu()
+ */
+function triple_double_menu() {
+  $items = array();
+
+  $items['admin/settings/triple_double'] = array(
+    'title' => 'Triple Double',
+    'description' => 'Configure settings for the Triple Double module.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('triple_double_settings'),
+    'access arguments' => array('administer triple double'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Triple Double Settings page
+ *
+ * @return settings form
+ */
+function triple_double_settings() {
+  $form = array();
+
+  $form['dribbble_playername'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Player Name'),
+    '#default_value' => variable_get('dribbble_playername', 'dribbble'),
+    '#size' => 50,
+    '#maxlength' => 255,
+    '#description' => t('Your Dribbble Player name'), 
+  );
+
+  return system_settings_form($form);
+}
+
