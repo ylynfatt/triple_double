@@ -1,0 +1,35 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Module for displaying your latest Dribbble shots.
+ *
+ * @see http://www.dribbble.com
+ */
+
+/**
+ * Display help and module information
+ * 
+ * @param path which path of the site we're displaying help
+ * @param arg array that holds the current path as would be returned from arg() function
+ * @return help text for the path
+ */
+function triple_double_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case "admin/help#triple_double":
+      $output = '<p>' . t('Display your latest Dribbble shots on your Drupal website.') . '</p>';
+      break;
+  }
+
+  return $output;
+}
+
+/**
+ * Implementation of hook_perm()
+ *
+ */
+function triple_double_perm() {
+  return array('access triple double content', 'administer triple double');
+}
