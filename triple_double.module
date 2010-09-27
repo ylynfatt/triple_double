@@ -100,6 +100,7 @@ function triple_double_block($op = 'list', $delta = 0, $edit = array()) {
       // Prepare JSON content for use
       $data = json_decode($json_data);
 
+      // Format your shots
       foreach ($data->{shots} as $shot) {
         $shots .= '<a href="' . $shot->{short_url} . '"><img src="' . $shot->{image_teaser_url} .'" /></a>';
       }
