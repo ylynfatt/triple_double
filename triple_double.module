@@ -68,6 +68,14 @@ function triple_double_settings() {
     '#description' => t('Your Dribbble Player name'), 
   );
 
+  $form['no_of_shots'] = array(
+    '#type' => 'select',
+    '#title' => t('No. of Shots'),
+    '#default_value' => variable_get('no_of_shots', '1'),
+    '#options' => array("1" => "1", "2"=> "2", "3" => "3"),
+    '#description' => t('No. of Dribbble shots to display.'), 
+  );
+
   return system_settings_form($form);
 }
 
@@ -82,12 +90,13 @@ function triple_double_block($op = 'list', $delta = 0, $edit = array()) {
     case 'view':
       $shots = "";
       $dribbble_playername = variable_get('dribbble_playername', 'dribbble');
+      $no_of_shots = variable_get('no_of_shots', '1');
 
       // create a new cURL resource
       $results = curl_init();
 
       // set URL and other appropriate options
-      curl_setopt($results, CURLOPT_URL, "http://api.dribbble.com/players/" . $dribbble_playername . "/shots?page=1&per_page=1");
+      curl_setopt($results, CURLOPT_URL, "http://api.dribbble.com/players/" . $dribbble_playername . "/shots?page=1&per_page=" . $no_of_shots);
       curl_setopt($results, CURLOPT_HEADER, 0);
       curl_setopt($results, CURLOPT_RETURNTRANSFER, 1);
 
