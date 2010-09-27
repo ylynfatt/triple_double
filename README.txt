@@ -1,9 +1,19 @@
-# Triple Double
+// $Id$
+
+Triple Double
+--------------
 Display your latest Dribbble shots on your Drupal website.
 
-## Requirements
+Requirements
+-------------
 * Since you are dislaying "Your" Dribbble shots, then you should have a Dribbble account.
 * Both the CURL and JSON PHP extensions need to be installed on your server.
 
-## Installation
-_To be added soon_
+Installation
+-------------
+1. Go to Adminster -> Site Building -> Modules. 
+2. Enable the 'Triple Double' module.
+3. Go to Administer -> Site Configuration -> Triple Double.
+4. Enter your Dribbble Player Name and the No. of Shots you would like to display and Save the configuration.
+5. Go to Administer -> Site Building -> Blocks.
+6. Place the 'Triple Double' Block into your desired region.
