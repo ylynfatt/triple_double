@@ -71,3 +71,42 @@ function triple_double_settings() {
   return system_settings_form($form);
 }
 
+/**
+ * Implementation of hook_block()
+ */
+function triple_double_block($op = 'list', $delta = 0, $edit = array()) {
+  switch ($op) {
+    case 'list':
+      $blocks[0]['info'] = t('Triple Double');
+      return $blocks;
+    case 'view':
+      $shots = "";
+      $dribbble_playername = variable_get('dribbble_playername', 'dribbble');
+
+      // create a new cURL resource
+      $results = curl_init();
+
+      // set URL and other appropriate options
+      curl_setopt($results, CURLOPT_URL, "http://api.dribbble.com/players/" . $dribbble_playername . "/shots?page=1&per_page=1");
+      curl_setopt($results, CURLOPT_HEADER, 0);
+      curl_setopt($results, CURLOPT_RETURNTRANSFER, 1);
+
+      // Get JSON content
+      $json_data = curl_exec($results);
+
+      // close cURL resource, and free up system resources
+      curl_close($results);
+
+      // Prepare JSON content for use
+      $data = json_decode($json_data);
+
+      foreach ($data->{shots} as $shot) {
+        $shots .= '<a href="' . $shot->{short_url} . '"><img src="' . $shot->{image_teaser_url} .'" /></a>';
+      }
+
+      $blocks['subject'] = t('My Recent Dribbble Shots');
+      $blocks['content'] = $shots;
+      return $blocks;
+  }
+}
+
