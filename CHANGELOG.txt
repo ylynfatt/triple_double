@@ -1,0 +1,12 @@
+// $Id$
+
+Triple Double 1.0 beta 2, 2010-10-2
+------------------------------------
+
+- No longer depends on the PHP CURL extension
+- Refactored code
+
+Triple Double 1.0 beta 1, 2010-09-27
+------------------------------------
+
+- Initial Release
