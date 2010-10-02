@@ -92,22 +92,12 @@ function triple_double_block($op = 'list', $delta = 0, $edit = array()) {
       $dribbble_playername = variable_get('dribbble_playername', 'dribbble');
       $no_of_shots = variable_get('no_of_shots', '1');
 
-      // create a new cURL resource
-      $results = curl_init();
-
-      // set URL and other appropriate options
-      curl_setopt($results, CURLOPT_URL, "http://api.dribbble.com/players/" . $dribbble_playername . "/shots?page=1&per_page=" . $no_of_shots);
-      curl_setopt($results, CURLOPT_HEADER, 0);
-      curl_setopt($results, CURLOPT_RETURNTRANSFER, 1);
-
       // Get JSON content
-      $json_data = curl_exec($results);
-
-      // close cURL resource, and free up system resources
-      curl_close($results);
-
+      $url = "http://api.dribbble.com/players/" . $dribbble_playername . "/shots?page=1&per_page=" . $no_of_shots;
+      $json_data = drupal_http_request($url);
+      
       // Prepare JSON content for use
-      $data = json_decode($json_data);
+      $data = json_decode($json_data->data);
 
       // Format your shots
       foreach ($data->{shots} as $shot) {
@@ -119,4 +109,3 @@ function triple_double_block($op = 'list', $delta = 0, $edit = array()) {
       return $blocks;
   }
 }
-
