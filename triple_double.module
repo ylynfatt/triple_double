@@ -88,24 +88,53 @@ function triple_double_block($op = 'list', $delta = 0, $edit = array()) {
       $blocks[0]['info'] = t('Triple Double');
       return $blocks;
     case 'view':
-      $shots = "";
       $dribbble_playername = variable_get('dribbble_playername', 'dribbble');
       $no_of_shots = variable_get('no_of_shots', '1');
 
-      // Get JSON content
       $url = "http://api.dribbble.com/players/" . $dribbble_playername . "/shots?page=1&per_page=" . $no_of_shots;
-      $json_data = drupal_http_request($url);
       
-      // Prepare JSON content for use
-      $data = json_decode($json_data->data);
-
-      // Format your shots
-      foreach ($data->{shots} as $shot) {
-        $shots .= '<a href="' . $shot->{short_url} . '"><img src="' . $shot->{image_teaser_url} .'" /></a>';
-      }
-
       $blocks['subject'] = t('My Recent Dribbble Shots');
-      $blocks['content'] = $shots;
+      $blocks['content'] = _triple_double_fetch_shots($url, $no_of_shots);
       return $blocks;
   }
+}
+
+/**
+ * Retrieve shots from the Dribbble API.
+ * 
+ * @param $url
+ * URL for the Dribbble shots
+ * @return
+ * String containing Dribbble shots.
+ */
+function _triple_double_fetch_shots($url) {
+  $http_result = drupal_http_request($url);
+  
+  if ($http_result->code == 200) {
+    // Prepare JSON content for use
+    $data = json_decode($http_result->data);
+    
+    return _triple_double_block_content($data);  	
+  } else {
+    return t('Unable to retrieve your Dribbble shots.');
+  }
+}
+
+/**
+ * Generate the contents of the block from the JSON object.
+ * 
+ * @param $data
+ * JSON object containing Dribbble API data
+ * @return
+ * Formatted string.
+ */
+function _triple_double_block_content($data) {
+  $output = "";
+  
+  // Format your shots
+  foreach ($data->{shots} as $shot) {
+    $output .= '<a href="' . $shot->{short_url} . '"><img src="' . $shot->{image_teaser_url} .'" /></a>';
+  }
+  
+  return $output;
 }
