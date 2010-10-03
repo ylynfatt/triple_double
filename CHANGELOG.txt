@@ -1,5 +1,13 @@
 // $Id$
 
+Triple Double 1.0 beta 3, 2010-10-3
+------------------------------------
+
+- Updated CSS so shots look like they do on dribbble.com
+- Allow user to disable default CSS
+- triple_double.install file added
+- minor fixes to adhere to Drupal coding standards 
+
 Triple Double 1.0 beta 2, 2010-10-2
 ------------------------------------
 
