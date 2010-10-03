@@ -147,15 +147,21 @@ function theme_triple_double($data, $dribbble_playername) {
   // Get Stylesheet
   drupal_add_css(drupal_get_path('module', 'triple_double') . '/triple_double.css');
   
-  $output = '<div class="dribbble-shots">';
-  $output .= '<ol>';
+  $output .= '<ol class="dribbbles">';
   // Format your shots
   foreach ($data->{shots} as $shot) {
-    $output .= '<li class="dribbble-shot"><a href="' . $shot->{short_url} . '"><img src="' . $shot->{image_teaser_url} .'" alt="' . $shot->{title} . '" /></a></li>';
+    $output .= '<li class="group">';
+    $output .= '<div class="dribbble">';
+    $output .= '<div class="dribbble-shot"><div class="dribbble-img">';
+    $output .= '<a href="' . $shot->{short_url} . '" class="dribbble-link"><img src="' . $shot->{image_teaser_url} .'" alt="' . $shot->{title} . '" /></a>';
+    $output .= '<a href="' . $shot->{short_url} . '" class="dribbble-over"><strong>' . $shot->{title} . '</strong> 
+					<span class="dim">' . $shot->{player}->{name} . '</span> 
+					<em>' . $shot->{created_at} . '</em></a>';
+    $output .= '</div></div></div>';
+    $output .= '</li>';
   }
   $output .= '</ol>';
-  $output .= '<p>' . l(t('View more of my shots'), 'http://dribbble.com/players/' . $dribbble_playername) . '</p>';
-  $output .= '</div>';
+  $output .= '<div class="dribbble-view-more">' . l(t('View more of my shots'), 'http://dribbble.com/players/' . $dribbble_playername) . '</div>';
   
   return $output;
 }
