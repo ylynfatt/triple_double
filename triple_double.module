@@ -126,9 +126,9 @@ function _triple_double_fetch_shots($url, $dribbble_playername) {
   if ($http_result->code == 200) {
     // Prepare JSON content for use
     $data = json_decode($http_result->data);
-    
-    return theme('triple_double',$data, $dribbble_playername);  	
-  } else {
+    return theme('triple_double', $data, $dribbble_playername);
+  }
+  else {
     return t('Unable to retrieve your Dribbble shots.');
   }
 }
