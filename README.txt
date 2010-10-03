@@ -4,6 +4,21 @@ Triple Double
 --------------
 Display your latest Dribbble shots on your Drupal website.
 
+
+What is Dribbble?
+------------------
+Dribbble is show and tell for designers, developers and other creatives.
+Share sneak peeks of your work as 'shots' — small screenshots of the designs 
+and applications you're working on.
+
+For more information, visit http://wwww.dribbble.com .
+
+Features
+---------
+* Specify the number of shots (between 1 and 3).
+* You can choose to ignore the CSS included in this module and create your own.
+
+
 Requirements
 -------------
 * Since you are dislaying "Your" Dribbble shots, then you should have a Dribbble account.
