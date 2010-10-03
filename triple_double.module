@@ -144,13 +144,16 @@ function _triple_double_fetch_shots($url, $dribbble_playername) {
  * Formatted string.
  */
 function theme_triple_double($data, $dribbble_playername) {
+  // Get Stylesheet
+  drupal_add_css(drupal_get_path('module', 'triple_double') . '/triple_double.css');
+  
   $output = '<div class="dribbble-shots">';
-  $output .= '<ul>';
+  $output .= '<ol>';
   // Format your shots
   foreach ($data->{shots} as $shot) {
     $output .= '<li class="dribbble-shot"><a href="' . $shot->{short_url} . '"><img src="' . $shot->{image_teaser_url} .'" alt="' . $shot->{title} . '" /></a></li>';
   }
-  $output .= '</ul>';
+  $output .= '</ol>';
   $output .= '<p>' . l(t('View more of my shots'), 'http://dribbble.com/players/' . $dribbble_playername) . '</p>';
   $output .= '</div>';
   

@@ -1,0 +1,23 @@
+.dribbble-shots {
+
+}
+
+.block .dribbble-shots ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.block .dribbble-shots ol li.dribbble-shot {
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  margin: 0 0 20px 0;
+  overflow: hidden;
+  padding: 10px;
+  width: 200px;
+}
+
+.dribbble-shots p a {
+  background: url(images/dribbble_icon) no-repeat top left;
+  padding-left: 24px;
+}
