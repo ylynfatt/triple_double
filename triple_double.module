@@ -62,7 +62,7 @@ function triple_double_settings() {
   $form['dribbble_playername'] = array(
     '#type' => 'textfield',
     '#title' => t('Player Name'),
-    '#default_value' => variable_get('dribbble_playername', 'dribbble'),
+    '#default_value' => variable_get('triple_double_dribbble_playername', 'dribbble'),
     '#size' => 50,
     '#maxlength' => 255,
     '#description' => t('Your Dribbble Player name'), 
@@ -71,7 +71,7 @@ function triple_double_settings() {
   $form['no_of_shots'] = array(
     '#type' => 'select',
     '#title' => t('No. of Shots'),
-    '#default_value' => variable_get('no_of_shots', '1'),
+    '#default_value' => variable_get('triple_double_no_of_shots', '1'),
     '#options' => array("1" => "1", "2" => "2", "3" => "3"),
     '#description' => t('No. of Dribbble shots to display.'), 
   );
@@ -79,7 +79,7 @@ function triple_double_settings() {
   $form['include_css'] = array(
     '#type' => 'select',
     '#title' => t('Include CSS?'),
-    '#default_value' => variable_get('include_css', '1'),
+    '#default_value' => variable_get('triple_double_include_css', '1'),
     '#options' => array(1 => "Yes", 0 => "No"),
     '#description' => t('Whether or not to use the included stylesheet.'), 
   );
@@ -96,8 +96,8 @@ function triple_double_block($op = 'list', $delta = 0, $edit = array()) {
       $blocks[0]['info'] = t('Triple Double');
       return $blocks;
     case 'view':
-      $dribbble_playername = variable_get('dribbble_playername', 'dribbble');
-      $no_of_shots = variable_get('no_of_shots', '1');
+      $dribbble_playername = variable_get('triple_double_dribbble_playername', 'dribbble');
+      $no_of_shots = variable_get('triple_double_no_of_shots', '1');
 
       $url = "http://api.dribbble.com/players/" . $dribbble_playername . "/shots?page=1&per_page=" . $no_of_shots;
       
@@ -153,7 +153,7 @@ function _triple_double_fetch_shots($url, $dribbble_playername) {
  */
 function theme_triple_double($data, $dribbble_playername) {
   // Get Stylesheet
-  if (variable_get('include_css', 1)) {
+  if (variable_get('triple_double_include_css', 1)) {
     drupal_add_css(drupal_get_path('module', 'triple_double') . '/triple_double.css');
   }
   
