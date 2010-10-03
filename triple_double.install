@@ -9,14 +9,14 @@
 /**
  * Implementation of hook_install().
  */
-function biography_install() {
+function triple_double_install() {
   
 }
 
 /**
  * Implementation of hook_uninstall().
  */
-function biography_uninstall() {
+function triple_double_uninstall() {
   variable_del('triple_double_dribbble_playername');
   variable_del('triple_double_no_of_shots');
   variable_del('triple_double_include_css'); 
