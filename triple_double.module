@@ -59,7 +59,7 @@ function triple_double_menu() {
 function triple_double_settings() {
   $form = array();
 
-  $form['dribbble_playername'] = array(
+  $form['triple_double_dribbble_playername'] = array(
     '#type' => 'textfield',
     '#title' => t('Player Name'),
     '#default_value' => variable_get('triple_double_dribbble_playername', 'dribbble'),
@@ -68,7 +68,7 @@ function triple_double_settings() {
     '#description' => t('Your Dribbble Player name'), 
   );
 
-  $form['no_of_shots'] = array(
+  $form['triple_double_no_of_shots'] = array(
     '#type' => 'select',
     '#title' => t('No. of Shots'),
     '#default_value' => variable_get('triple_double_no_of_shots', '1'),
@@ -76,7 +76,7 @@ function triple_double_settings() {
     '#description' => t('No. of Dribbble shots to display.'), 
   );
   
-  $form['include_css'] = array(
+  $form['triple_double_include_css'] = array(
     '#type' => 'select',
     '#title' => t('Include CSS?'),
     '#default_value' => variable_get('triple_double_include_css', '1'),
