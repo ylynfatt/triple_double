@@ -17,3 +17,8 @@ Installation
 4. Enter your Dribbble Player Name and the No. of Shots you would like to display and Save the configuration.
 5. Go to Administer -> Site Building -> Blocks.
 6. Place the 'Triple Double' Block into your desired region.
+
+Acknowledgements
+-----------------
+* Dan Cederholm for creating Dribbble (http://www.dribbble.com).
+* Dave Rupert for creating the "Dribbble WordPress Plugin" (http://daverupert.com/2010/05/dribbble-wordpress-plugin) which inspired this module.
