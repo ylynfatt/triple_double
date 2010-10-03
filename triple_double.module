@@ -94,9 +94,20 @@ function triple_double_block($op = 'list', $delta = 0, $edit = array()) {
       $url = "http://api.dribbble.com/players/" . $dribbble_playername . "/shots?page=1&per_page=" . $no_of_shots;
       
       $blocks['subject'] = t('My Recent Dribbble Shots');
-      $blocks['content'] = _triple_double_fetch_shots($url, $no_of_shots);
+      $blocks['content'] = _triple_double_fetch_shots($url, $dribbble_playername);
       return $blocks;
   }
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function triple_double_theme() {
+  return array(
+    'triple_double' => array(
+      'arguments' => array('data' => NULL, 'dribbble_playername' => NULL),
+    ),
+  );
 }
 
 /**
@@ -104,37 +115,44 @@ function triple_double_block($op = 'list', $delta = 0, $edit = array()) {
  * 
  * @param $url
  * URL for the Dribbble shots
+ * @param $dribbble_playername
+ * Dribbble username
  * @return
  * String containing Dribbble shots.
  */
-function _triple_double_fetch_shots($url) {
+function _triple_double_fetch_shots($url, $dribbble_playername) {
   $http_result = drupal_http_request($url);
   
   if ($http_result->code == 200) {
     // Prepare JSON content for use
     $data = json_decode($http_result->data);
     
-    return _triple_double_block_content($data);  	
+    return theme('triple_double',$data, $dribbble_playername);  	
   } else {
     return t('Unable to retrieve your Dribbble shots.');
   }
 }
 
 /**
- * Generate the contents of the block from the JSON object.
+ * Theme function for displaying Dribbble shots.
  * 
  * @param $data
  * JSON object containing Dribbble API data
+ * @param $dribbble_playername
+ * Dribbble username
  * @return
  * Formatted string.
  */
-function _triple_double_block_content($data) {
-  $output = "";
-  
+function theme_triple_double($data, $dribbble_playername) {
+  $output = '<div class="dribbble-shots">';
+  $output .= '<ul>';
   // Format your shots
   foreach ($data->{shots} as $shot) {
-    $output .= '<a href="' . $shot->{short_url} . '"><img src="' . $shot->{image_teaser_url} .'" /></a>';
+    $output .= '<li class="dribbble-shot"><a href="' . $shot->{short_url} . '"><img src="' . $shot->{image_teaser_url} .'" alt="' . $shot->{title} . '" /></a></li>';
   }
+  $output .= '</ul>';
+  $output .= '<p>' . l(t('View more of my shots'), 'http://dribbble.com/players/' . $dribbble_playername) . '</p>';
+  $output .= '</div>';
   
   return $output;
 }
