@@ -75,6 +75,14 @@ function triple_double_settings() {
     '#options' => array("1" => "1", "2" => "2", "3" => "3"),
     '#description' => t('No. of Dribbble shots to display.'), 
   );
+  
+  $form['include_css'] = array(
+    '#type' => 'select',
+    '#title' => t('Include CSS?'),
+    '#default_value' => variable_get('include_css', '1'),
+    '#options' => array(1 => "Yes", 0 => "No"),
+    '#description' => t('Whether or not to use the included stylesheet.'), 
+  );
 
   return system_settings_form($form);
 }
@@ -145,7 +153,9 @@ function _triple_double_fetch_shots($url, $dribbble_playername) {
  */
 function theme_triple_double($data, $dribbble_playername) {
   // Get Stylesheet
-  drupal_add_css(drupal_get_path('module', 'triple_double') . '/triple_double.css');
+  if (variable_get('include_css', 1)) {
+    drupal_add_css(drupal_get_path('module', 'triple_double') . '/triple_double.css');
+  }
   
   $output .= '<ol class="dribbbles">';
   // Format your shots
