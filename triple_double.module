@@ -163,10 +163,8 @@ function theme_triple_double($data, $dribbble_playername) {
     $output .= '<li class="group">';
     $output .= '<div class="dribbble">';
     $output .= '<div class="dribbble-shot"><div class="dribbble-img">';
-    $output .= '<a href="' . $shot->{short_url} . '" class="dribbble-link"><img src="' . $shot->{image_teaser_url} .'" alt="' . $shot->{title} . '" /></a>';
-    $output .= '<a href="' . $shot->{short_url} . '" class="dribbble-over"><strong>' . $shot->{title} . '</strong> 
-					<span class="dim">' . $shot->{player}->{name} . '</span> 
-					<em>' . $shot->{created_at} . '</em></a>';
+    $output .= l('<img src="' . $shot->{image_teaser_url} .'" alt="' . $shot->{title} . '" />', $shot->{short_url}, array('attributes' => array('class' => 'dribbble-link'), 'html' => TRUE));
+    $output .= l('<strong>' . $shot->{title} . '</strong><span class="dim">' . $shot->{player}->{name} . '</span><em>' . $shot->{created_at} . '</em>', $shot->{short_url}, array('attributes' => array('class' => 'dribbble-over'), 'html' => TRUE));
     $output .= '</div></div></div>';
     $output .= '</li>';
   }
