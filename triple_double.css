@@ -1,3 +1,10 @@
+/* $Id$ */
+
+/**
+ * @file
+ * Styles for displaying your latest Dribbble Shots.
+ */
+
 .dribbbles {
   list-style-type: none;
   margin: 0px 0px 1.5em;
