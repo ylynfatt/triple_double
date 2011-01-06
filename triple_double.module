@@ -30,7 +30,7 @@ function triple_double_help($path, $arg) {
  * Implementation of hook_perm()
  */
 function triple_double_perm() {
-  return array('access triple double content', 'administer triple double');
+  return array('administer triple double');
 }
 
 /**
