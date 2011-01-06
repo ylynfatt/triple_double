@@ -137,6 +137,7 @@ function _triple_double_fetch_shots($url, $dribbble_playername) {
     return theme('triple_double', $data, $dribbble_playername);
   }
   else {
+    watchdog('triple_double', t('Unable to retrieve your Dribbble shots. The following HTTP Response Code was received from the Dribbble API: %code'), array('%code' => $http_result->code), WATCHDOG_NOTICE);
     return t('Unable to retrieve your Dribbble shots.');
   }
 }
