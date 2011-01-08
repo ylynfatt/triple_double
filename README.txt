@@ -37,4 +37,3 @@ Acknowledgements
 -----------------
 * Dan Cederholm for creating Dribbble (http://www.dribbble.com).
 * Dave Rupert for creating the "Dribbble WordPress Plugin" (http://daverupert.com/2010/05/dribbble-wordpress-plugin) which inspired this module.
-* Komodo Media (http://www.komodomedia.com/) for the Dribbble Social Media icon.

@@ -1,5 +1,10 @@
 // $Id$
 
+Triple Double 1.0 beta 5, 2011-01-07
+------------------------------------
+
+- Removed the Komodo Media Dribble Social Media icon as it's CC license might conflict with GPL
+
 Triple Double 1.0 beta 4, 2011-01-06
 ------------------------------------
 
