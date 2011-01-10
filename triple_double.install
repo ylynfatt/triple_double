@@ -1,0 +1,23 @@
+<?php
+// $Id$
+
+/**
+ * @file
+ * Install the Triple Double module
+ */
+ 
+/**
+ * Implementation of hook_install().
+ */
+function triple_double_install() {
+  
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function triple_double_uninstall() {
+  variable_del('triple_double_dribbble_playername');
+  variable_del('triple_double_no_of_shots');
+  variable_del('triple_double_include_css'); 
+}
