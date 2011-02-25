@@ -1,4 +1,3 @@
-;$Id$
 name = "Triple Double"
 description = "Display your latest Dribbble shots on your Drupal website."
 core = 6.x
