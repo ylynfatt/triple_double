@@ -1,4 +1,9 @@
 
+Triple Double 1.0, 2011-06-05
+------------------------------------
+
+- The 1.0 release of triple_double is being released just to move it out of beta and consider the module stable.
+
 Triple Double 1.0 beta 5, 2011-01-07
 ------------------------------------
 
